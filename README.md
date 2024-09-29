@@ -1,2 +1,13 @@
-# MGL-Exchange
-Buy &amp; Sell Crypto with  MGL Exchange
+## Installation
+
+Run `npm install` command in root folder and backend folder
+
+```
+npm install
+```
+
+## How to Run
+
+```
+npm run dev
+```
