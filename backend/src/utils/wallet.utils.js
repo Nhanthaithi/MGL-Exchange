@@ -1,5 +1,7 @@
 const bip39 = require('bip39')
 const HDKey = require('hdkey')
+const dotenv = require('dotenv');
+dotenv.config();
 const axios = require('axios')
 const ETH_ACCOUNT_PATH = `m/44'/60'/0'`
 const Web3 = require('web3');
@@ -9,8 +11,7 @@ const initSeed = "MGLWalletInitKey";
 const secSeed = "MGLWalletSecurityWithSecurityKey";
 const mainTokenList = require('./polygon.json')
 const testTokenList = require('./polygon_testnet.json')
-const dotenv = require('dotenv');
-dotenv.config();
+
 var minABI = [
     // balanceOf
     {
@@ -231,7 +232,7 @@ class Wallet {
     }
 
     async updateTopToken() {
-        let qs = `?start=1&limit=10&convert=USD`
+        let qs = `?start=1&limit=10&convert=USD`;
         try {
             let result = await axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'+qs, {
                 headers: {

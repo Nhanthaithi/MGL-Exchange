@@ -6,6 +6,7 @@ class DBConnection {
     constructor() {
         this.db = mysql2.createPool({
             host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
             user: process.env.DB_USER,
             password: process.env.DB_PASS,
             database: process.env.DB_DATABASE
@@ -26,11 +27,12 @@ class DBConnection {
                 if (err.code === 'ECONNREFUSED') {
                     console.error('Database connection was refused.');
                 }
-            }
-            if (connection) {
+                // Log error detail
+                console.error('Database connection error:', err);
+            } else {
+                console.log('Database connected successfully.');
                 connection.release();
             }
-            return
         });
     }
 

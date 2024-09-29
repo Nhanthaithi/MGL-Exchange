@@ -12,6 +12,10 @@ const subscriberRouter = require('./routes/api/subscriber.route');
 const ieo = require('./routes/api/ieo.route');
 const p2p = require('./routes/api/p2p.route');
 const WalletService = require('./services/wallet.service');
+const dbQuery = require('./db/db-connection') ;
+
+
+// Init cron job
 cron.schedule('*/10 * * * *', () => {
   WalletService.updateTopTokens().then(() => {
     console.log("Top Token data updated")

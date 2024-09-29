@@ -192,11 +192,19 @@ class WalletService {
         const tokenList = await TopTokenModel.find();
         if (tokenList.length === 0) {
             for (let i = 0; i < result.length; i ++) {
-                await TopTokenModel.create({ name:result[i].name, symbol:result[i].symbol, price:result[i].quote.USD.price, daily_percent:result[i].quote.USD.percent_change_24h });
+                await TopTokenModel.create({ 
+                    name:result[i].name, 
+                    symbol:result[i].symbol, 
+                    price:result[i].quote.USD.price, 
+                    daily_percent:result[i].quote.USD.percent_change_24h });
             }
         } else {
             for (let i = 0; i < result.length; i ++) {
-                await TopTokenModel.update({ name:result[i].name, symbol:result[i].symbol, price:result[i].quote.USD.price, daily_percent:result[i].quote.USD.percent_change_24h}, i+1);
+                await TopTokenModel.update({ 
+                    name:result[i].name, 
+                    symbol:result[i].symbol, 
+                    price:result[i].quote.USD.price, 
+                    daily_percent:result[i].quote.USD.percent_change_24h}, i+1);
             }
         }
     }
@@ -205,6 +213,7 @@ class WalletService {
         const tokenList = await TopTokenModel.find();
         if (tokenList.length === 0) {
             let result = await new Wallet().updateTopToken();
+            console.log("getTopTokens", result);
             let data = []
             for (let i = 0; i < result.length; i ++ ) {
                 data.push({ name:result[i].name, symbol:result[i].symbol, price:result[i].quote.USD.price, daily_percent:result[i].quote.USD.percent_change_24h})
